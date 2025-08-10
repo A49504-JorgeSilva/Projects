@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="serie2.mapCollections.HashTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-11-27T22:48:54" hostname="LAPTOP-OOUFGTVD" time="0.035">
+  <properties/>
+  <testcase name="hashMap_equalElements()" classname="serie2.mapCollections.HashTest" time="0.03"/>
+  <testcase name="hashMap_empty()" classname="serie2.mapCollections.HashTest" time="0.0"/>
+  <testcase name="hashMap_someElements()" classname="serie2.mapCollections.HashTest" time="0.002"/>
+  <testcase name="hashMap_singleton()" classname="serie2.mapCollections.HashTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
