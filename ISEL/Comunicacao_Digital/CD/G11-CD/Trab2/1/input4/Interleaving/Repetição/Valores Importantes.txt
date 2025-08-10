@@ -1,0 +1,30 @@
+BER usada = 0.1
+Número total de bits que passam pelo BSC: 5592
+BER depois do BSC = 0.02700286123032904
+Número de simbolos errados entre A e B: 134
+Número de simbolos errados entre TX e RX: 134
+--------------------------------------------------------
+BER usada = 0.01
+Número total de bits que passam pelo BSC: 5592
+BER depois do BSC = 0.000178826895565093
+Número de simbolos errados entre A e B: 1
+Número de simbolos errados entre TX e RX: 1
+--------------------------------------------------------
+BER usada = 0.001
+Número total de bits que passam pelo BSC: 5592
+BER depois do BSC = 0.0
+Número de simbolos errados entre A e B: 0
+Número de simbolos errados entre TX e RX: 0
+--------------------------------------------------------
+BER usada = 0.0001
+Número total de bits que passam pelo BSC: 5592
+BER depois do BSC = 0.0
+Número de simbolos errados entre A e B: 0
+Número de simbolos errados entre TX e RX: 0
+--------------------------------------------------------
+BER usada = 1e-05
+Número total de bits que passam pelo BSC: 5592
+BER depois do BSC = 0.0
+Número de simbolos errados entre A e B: 0
+Número de simbolos errados entre TX e RX: 0
+--------------------------------------------------------

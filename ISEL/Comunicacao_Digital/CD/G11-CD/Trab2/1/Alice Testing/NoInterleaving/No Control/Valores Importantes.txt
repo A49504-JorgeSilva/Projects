@@ -1,0 +1,25 @@
+BER usada = 0.1
+Número total de bits que passam pelo BSC: 1187856
+BER depois do BSC = 0.10006600126614675
+Número de simbolos errados entre A e B: 84582
+--------------------------------------------------------
+BER usada = 0.01
+Número total de bits que passam pelo BSC: 1187856
+BER depois do BSC = 0.01000542153257634
+Número de simbolos errados entre A e B: 11514
+--------------------------------------------------------
+BER usada = 0.001
+Número total de bits que passam pelo BSC: 1187856
+BER depois do BSC = 0.0009807586104713028
+Número de simbolos errados entre A e B: 1162
+--------------------------------------------------------
+BER usada = 0.0001
+Número total de bits que passam pelo BSC: 1187856
+BER depois do BSC = 9.344567018224432e-05
+Número de simbolos errados entre A e B: 111
+--------------------------------------------------------
+BER usada = 1e-05
+Número total de bits que passam pelo BSC: 1187856
+BER depois do BSC = 1.0944087498821406e-05
+Número de simbolos errados entre A e B: 13
+--------------------------------------------------------

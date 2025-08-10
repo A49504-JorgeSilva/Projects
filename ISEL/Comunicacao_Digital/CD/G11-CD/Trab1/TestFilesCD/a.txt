@@ -1,0 +1,4 @@
+Comunicação Digital - início de ficheiro de teste.
+1234567890 
+The quick brown fox jumps over the lazy dog.
+Comunicação Digital - final de ficheiro de teste.
