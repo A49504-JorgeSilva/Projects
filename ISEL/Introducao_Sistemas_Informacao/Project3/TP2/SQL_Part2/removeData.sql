@@ -1,0 +1,14 @@
+drop table if exists SERVICECOST;
+drop table if exists TRAVEL;
+drop table if exists REPLACEMENT;
+drop table if exists REPLACEMENTORDER;
+drop table if exists DOCK;
+drop table if exists SCOOTER;
+drop table if exists SCOOTERMODEL;
+drop table if exists TYPEOF;
+drop table if exists TOPUP;
+drop table if exists CARD;
+drop table if exists STATION;
+drop table if exists EMPLOYEE;
+drop table if exists CLIENT;
+drop table if exists PERSON;
