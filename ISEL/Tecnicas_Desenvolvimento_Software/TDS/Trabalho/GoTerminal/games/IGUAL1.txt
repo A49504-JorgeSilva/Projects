@@ -1,0 +1,10 @@
+BLACK:2 WHITE:0
+;
+BoardFinish
+.
+3A:BLACK
+2B:BLACK
+1B:BLACK
+.
+BLACK
+

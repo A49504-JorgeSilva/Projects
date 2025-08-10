@@ -1,0 +1,12 @@
+BLACK:0.0 WHITE:0.0
+;
+BoardRun
+.
+1A:BLACK
+2A:WHITE
+.
+BLACK:1A
+WHITE:2A
+.
+BLACK
+
