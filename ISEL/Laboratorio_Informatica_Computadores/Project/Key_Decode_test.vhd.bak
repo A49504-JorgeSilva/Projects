@@ -1,0 +1,45 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity Key_Decode_test is
+port( CLK,Reset : IN STD_LOGIC;
+		KEYPAD_LIN : in std_logic_vector(3 downto 0);
+		KEYPAD_CODE: out std_logic_vector(3 downto 0);
+		KEYPAD_COL : out std_logic_vector(3 downto 0)
+		
+);
+end;
+
+architecture arq_KeyDecode_test of Key_Decode_test is
+
+component KEY_SCAN
+port( Kscan, Clk, Clr : IN STD_LOGIC;
+		Kpress : OUT STD_LOGIC;
+		KEYPAD_LIN : in std_logic_vector(3 downto 0);
+		KEYPAD_CODE: out std_logic_vector(3 downto 0);
+		KEYPAD_COL : out std_logic_vector(3 downto 0)
+
+		
+);
+end component;
+
+signal KpressSignal, KscanSignal : STD_LOGIC;
+
+
+
+begin
+
+KscanSignal <= not KpressSignal;
+
+uKeyScan : KEY_SCAN port map(
+					Kscan => KscanSignal,
+					Kpress => KpressSignal,
+					Clr => Reset,
+					Clk => Clk,
+					KEYPAD_LIN => KEYPAD_LIN, 
+					KEYPAD_CODE => KEYPAD_CODE,
+					KEYPAD_COL =>	KEYPAD_COL 
+
+);
+
+end arq_KeyDecode_test;

@@ -1,0 +1,14 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/mux4_1.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/Full_adder_4bits.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/Somador.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/Counter.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/decoder2_4.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/Key_scan.vhd}
+

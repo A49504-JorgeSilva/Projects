@@ -1,0 +1,27 @@
+
+#============================================================
+# CLOCK
+#============================================================
+
+set_location_assignment PIN_P11 -to MCLK
+
+#============================================================
+# SW
+#============================================================
+set_location_assignment PIN_C10 -to reset
+#set_location_assignment PIN_C11 -to SW[1]
+set_location_assignment PIN_D12 -to accept
+
+#============================================================
+# LED
+#============================================================
+set_location_assignment PIN_A8 -to DXval
+set_location_assignment PIN_A9 -to data[0]
+set_location_assignment PIN_A10 -to data[1]
+set_location_assignment PIN_B10 -to data[2]
+set_location_assignment PIN_D13 -to data[3]
+set_location_assignment PIN_C13 -to data[4]
+#============================================================
+# End of pin and io_standard assignments
+#============================================================
+

@@ -1,0 +1,52 @@
+
+State Machine - |AccessControlSystem|SDC:uSDC|DoorController:uDoorController|CURRENT_STATE
+Name CURRENT_STATE.state_bit_2 CURRENT_STATE.state_bit_1 CURRENT_STATE.state_bit_0 
+CURRENT_STATE.SYSTEM_OFF 0 0 0 
+CURRENT_STATE.WAITING 0 0 1 
+CURRENT_STATE.OPENING 0 1 1 
+CURRENT_STATE.CLOSING 0 1 0 
+CURRENT_STATE.COMPLETED 1 1 0 
+
+State Machine - |AccessControlSystem|SDC:uSDC|SerialReceiver:uSerialReceiver|SerialControl:uSerialControl|CURRENT_STATE
+Name CURRENT_STATE.state_bit_1 CURRENT_STATE.state_bit_0 
+CURRENT_STATE.READY 0 0 
+CURRENT_STATE.READING 0 1 
+CURRENT_STATE.WAITING 1 1 
+CURRENT_STATE.COMPLETED 1 0 
+
+State Machine - |AccessControlSystem|SLCDC:uSLCDC|Dispatcher:uDispat|CURRENT_STATE
+Name CURRENT_STATE.state_bit_1 CURRENT_STATE.state_bit_0 
+CURRENT_STATE.WAITING 0 0 
+CURRENT_STATE.COUNTING 0 1 
+CURRENT_STATE.COMPLETED 1 1 
+
+State Machine - |AccessControlSystem|SLCDC:uSLCDC|SerialReceiver:uSerialReceiver|SerialControl:uSerialControl|CURRENT_STATE
+Name CURRENT_STATE.state_bit_1 CURRENT_STATE.state_bit_0 
+CURRENT_STATE.READY 0 0 
+CURRENT_STATE.READING 0 1 
+CURRENT_STATE.WAITING 1 1 
+CURRENT_STATE.COMPLETED 1 0 
+
+State Machine - |AccessControlSystem|Keyboard_Reader:uKeyboard_Reader|Key_Decode:uKey_Decode|KEY_CONTROL:uKeyControL|CurrentState
+Name CurrentState.state_bit_1 CurrentState.state_bit_0 
+CurrentState.STATE_NOT_WRITING 0 0 
+CurrentState.STATE_WRITING 0 1 
+CurrentState.STATE_WRITING_COMPLETE 1 1 
+
+State Machine - |AccessControlSystem|Keyboard_Reader:uKeyboard_Reader|Output_Buffer:uOutput_Buffer|OutputBufferControl:UOutputBufferControl|CURRENT_STATE
+Name CURRENT_STATE.state_bit_1 CURRENT_STATE.state_bit_0 
+CURRENT_STATE.WAITING 0 0 
+CURRENT_STATE.SENDING 0 1 
+CURRENT_STATE.COMPLETED 1 1 
+CURRENT_STATE.ACKN 1 0 
+
+State Machine - |AccessControlSystem|Keyboard_Reader:uKeyboard_Reader|Ring_Buffer:uRing_Buffer|RingBufferControl:URingBufferControl|CURRENT_STATE
+Name CURRENT_STATE.state_bit_2 CURRENT_STATE.state_bit_1 CURRENT_STATE.state_bit_0 
+CURRENT_STATE.WAITING 0 0 0 
+CURRENT_STATE.WAIT_FOR_READING 0 0 1 
+CURRENT_STATE.READING 0 1 1 
+CURRENT_STATE.ADDRESSING 0 1 0 
+CURRENT_STATE.WRITING 1 1 0 
+CURRENT_STATE.INCRPUT 1 1 1 
+CURRENT_STATE.INCRGET 1 0 1 
+CURRENT_STATE.COMPLETED 1 0 0 

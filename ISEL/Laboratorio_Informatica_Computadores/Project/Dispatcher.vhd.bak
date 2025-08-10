@@ -1,0 +1,54 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity Dispatcher is
+port( Dval,clk,reset : IN STD_LOGIC;
+	   WrL, done : OUT STD_LOGIC;
+		Din : IN STD_LOGIC_VECTOR(4 downto 0);
+		Din : OUT STD_LOGIC_VECTOR(4 downto 0)
+);
+end SerialControlSLCDC;
+
+architecture behavioral of Dispatcher is
+
+type STATE_TYPE is (WAITING, SENDING, COMPLETED);
+
+signal CURRENT_STATE, NEXT_STATE : STATE_TYPE;
+
+begin
+
+--		Registo Current State
+
+CURRENT_STATE <= WAITING when (reset = '1') else NEXT_STATE when rising_edge(clk);
+
+--		Máquina de Estados
+
+GenerateNextState:
+process (CURRENT_STATE, Dval)
+	begin
+		case CURRENT_STATE is
+			when WAITING			=> if(Dval = '1') then
+												NEXT_STATE 		<= SENDING;
+											else
+												NEXT_STATE 		<= WAITING;
+											end if;
+											
+			when SENDING			=> NEXT_STATE			<= COMPLETED;
+										
+			when COMPLETED			=> NEXT_STATE 			<= WAITING;
+			
+		end case;
+
+end process;
+
+--		Outputs
+WrL <= '1' when (CURRENT_STATE = SENDING) else '0';
+done <= '1' when (CURRENT_STATE = COMPLETED) else '1';  
+
+Dout(0) <= Din(0);
+Dout(1) <= Din(1);
+Dout(2) <= Din(2);
+Dout(3) <= Din(3);
+Dout(4) <= Din(4);
+
+end beahavioral;

@@ -1,0 +1,24 @@
+
+
+set_location_assignment PIN_P11 -to Clk
+
+set_location_assignment PIN_W5 -to KEYPAD_LIN[0]
+set_location_assignment PIN_AA14 -to KEYPAD_LIN[1]
+set_location_assignment PIN_W12 -to KEYPAD_LIN[2]
+set_location_assignment PIN_AB12 -to KEYPAD_LIN[3]
+set_location_assignment PIN_AB11 -to KEYPAD_COL[0]
+set_location_assignment PIN_AB10 -to KEYPAD_COL[1]
+set_location_assignment PIN_AA9 -to KEYPAD_COL[2]
+set_location_assignment PIN_AA8 -to KEYPAD_COL[3]
+
+#LED
+
+set_location_assignment PIN_A8 -to KEYPAD_CODE[0]
+set_location_assignment PIN_A9 -to KEYPAD_CODE[1]
+set_location_assignment PIN_A10 -to KEYPAD_CODE[2]
+set_location_assignment PIN_B10 -to KEYPAD_CODE[3]
+set_location_assignment PIN_E14 -to Kval
+
+#SWITCH
+set_location_assignment PIN_C10 -to Reset
+set_location_assignment PIN_C11 -to Kack

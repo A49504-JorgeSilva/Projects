@@ -1,0 +1,83 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity SerialReceiverSDC_TB is
+end SerialReceiverSDC_TB;
+
+architecture testbench of SerialReceiverSDC_TB is
+    -- Component declarations
+    component SerialReceiverSDC is
+        port (
+            SDX, SCLK, SS, accept, MCLK, reset : in std_logic;
+            DXval, busy : out std_logic;
+            data : out std_logic_vector (4 downto 0)
+        );
+    end component;
+
+    -- Signal declarations
+    signal SDX_in, SCLK_in, SS_in, accept_in, MCLK_in, reset_in : std_logic;
+    signal DXval_out, busy_out : std_logic;
+    signal data_out : std_logic_vector (4 downto 0);
+
+begin
+    -- Instantiate the SerialReceiverSDC
+    UUT: SerialReceiverSDC port map (
+        SDX => SDX_in,
+        SCLK => SCLK_in,
+        SS => SS_in,
+        accept => accept_in,
+        MCLK => MCLK_in,
+        reset => reset_in,
+        DXval => DXval_out,
+        busy => busy_out,
+        data => data_out
+    );
+
+    -- Stimulus process
+    stimulus: process
+    begin
+        -- Initialize signals
+        SDX_in <= '0';
+        SCLK_in <= '0';
+        SS_in <= '0';
+        accept_in <= '0';
+        MCLK_in <= '0';
+        reset_in <= '1';
+        wait for 10 ns;
+
+        -- Release reset
+        reset_in <= '0';
+        wait for 10 ns;
+
+        -- Apply stimuli
+        SDX_in <= '1';
+        SCLK_in <= '1';
+        SS_in <= '1';
+        accept_in <= '1';
+        MCLK_in <= '1';
+        wait for 10 ns;
+
+        -- End the simulation
+        wait;
+    end process;
+
+    -- Monitor process
+    monitor: process
+    begin
+        -- Wait for some time to allow the signals to settle
+        wait for 5 ns;
+
+        -- Display the header
+        report "SDX SCLK SS accept MCLK reset DXval busy data";
+
+        -- Display the initial values
+        report SDX_in'IMAGE & " " & SCLK_in'IMAGE & " " & SS_in'IMAGE & " " & accept_in'IMAGE & " " & MCLK_in'IMAGE & " " & reset_in'IMAGE & " " & DXval_out'IMAGE & " " & busy_out'IMAGE & " " & data_out'IMAGE;
+
+        -- Monitor the signals
+        while true loop
+            wait for 10 ns;
+            report SDX_in'IMAGE & " " & SCLK_in'IMAGE & " " & SS_in'IMAGE & " " & accept_in'IMAGE & " " & MCLK_in'IMAGE & " " & reset_in'IMAGE & " " & DXval_out'IMAGE & " " & busy_out'IMAGE & " " & data_out'IMAGE;
+        end loop;
+    end process;
+
+end testbench;

@@ -1,0 +1,97 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "KEYPAD_COL[0]",
+					"strict" : false
+				},
+				{
+					"name" : "KEYPAD_COL[1]",
+					"strict" : false
+				},
+				{
+					"name" : "KEYPAD_COL[2]",
+					"strict" : false
+				},
+				{
+					"name" : "KEYPAD_COL[3]",
+					"strict" : false
+				},
+				{
+					"name" : "WrL",
+					"strict" : false
+				},
+				{
+					"name" : "Dout[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Dout[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Dout[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Dout[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Dout[4]",
+					"strict" : false
+				},
+				{
+					"name" : "KEYPAD_LIN[2]",
+					"strict" : false
+				},
+				{
+					"name" : "KEYPAD_LIN[1]",
+					"strict" : false
+				},
+				{
+					"name" : "KEYPAD_LIN[0]",
+					"strict" : false
+				},
+				{
+					"name" : "KEYPAD_LIN[3]",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "MCLK",
+					"strict" : false
+				},
+				{
+					"name" : "Sopen",
+					"strict" : false
+				},
+				{
+					"name" : "Sclose",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tms",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tck",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdi",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdo",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

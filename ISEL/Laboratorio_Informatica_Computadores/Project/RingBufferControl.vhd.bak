@@ -1,0 +1,64 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity RingBufferControl is
+port( DAV,clk,reset, CTS, full, empty : IN STD_LOGIC;
+		Wreg, Wr, selPnG, DAC, incPut, incGet : OUT STD_LOGIC
+);
+end RingBufferControl;
+
+architecture arq_RingBufferControl of RingBufferControl is
+
+type STATE_TYPE is (WAITING, GET, PUT, INC, COMPLETE);
+
+signal CURRENT_STATE, NEXT_STATE : STATE_TYPE;
+
+begin
+
+--		Registo Current State
+
+CURRENT_STATE <= WAITING when (reset = '1') else NEXT_STATE when rising_edge(clk);
+
+--		Máquina de Estados
+
+GenerateNextState:
+process (CURRENT_STATE, DAV, CTS, full, empty)
+	begin
+		case CURRENT_STATE is
+			when WAITING			=> if(DAV = '1' and CTS = '1' and empty = '0' and full = '0') then
+												NEXT_STATE 		<= PUT;
+											elsif(DAV = '1' and CTS = '1' and empty = '0' ) then
+													NEXT_STATE 		<= PUT;
+											elsif(DAV = '1' and CTS = '1' and empty = '0' and full = '1' ) then
+													NEXT_STATE 		<= GET; 		
+											else
+												NEXT_STATE 		<= WAITING;
+											end if;																																																				
+			when GET			=> 		NEXT_STATE 		<= PUT;
+											
+			when PUT			=>			NEXT_STATE 		<= INC;
+			when INC			=>			NEXT_STATE 		<= COMPLETE;
+
+										
+			when COMPLETE	=> if(DAV = '0') then
+												NEXT_STATE 		<= WAITING;
+											else
+												NEXT_STATE 		<= COMPLETE;
+											end if;
+
+					end case;
+end process;
+
+--		Outputs
+
+ 
+incGet   <= '1' when (CURRENT_STATE = GET)     else '0';
+
+Wreg, Wr, selPnG 	<= '1' when (CURRENT_STATE = PUT)   else '0';
+
+incPut <= '1' when (CURRENT_STATE = INC) else '0';
+
+DAC <= '1' when (CURRENT_STATE = COMPLETED) else '0';
+
+
+end arq_RingBufferControl;

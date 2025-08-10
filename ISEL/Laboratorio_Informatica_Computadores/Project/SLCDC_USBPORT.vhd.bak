@@ -1,0 +1,76 @@
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.all;
+
+ENTITY SLCDC_USBPORT IS
+	PORT( 
+			Din : IN STD_LOGIC_VECTOR (4 downto 0);
+			MCLK,reset, enable : IN STD_LOGIC;
+			Dout : OUT STD_LOGIC_VECTOR(4 downto 0)
+	);
+END SLCDC_USBPORT;
+
+
+
+
+ARCHITECTURE arq_SLCDC_USBPORT OF SLCDC_USBPORT IS
+
+COMPONENT UsbPort
+			PORT
+				(
+					inputPort:  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+					outputPort :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
+				);
+END COMPONENT;
+
+COMPONENT SLCDC
+			PORT( MCLK,reset : IN STD_LOGIC;
+					NOT_SS, SCLK, SDX: IN STD_LOGIC; --software
+					WrL  : OUT STD_LOGIC;
+					Dout : OUT STD_LOGIC_VECTOR(4 downto 0)
+			);
+END COMPONENT;
+
+COMPONENT LCD
+			PORT( 
+				Din : IN STD_LOGIC_VECTOR (4 downto 0);
+				MCLK,reset, enable : IN STD_LOGIC;
+				Dout : OUT STD_LOGIC_VECTOR(4 downto 0)
+		);
+END COMPONENT;
+
+
+signal UsbPortInputSignal, UsbPortOutputSignal : STD_LOGIC_VECTOR (7 downto 0);
+signal  WrLSignal : STD_LOGIC;
+signal DoutSignal : STD_LOGIC_VECTOR (4 downto 0);
+
+begin
+
+uUsbPort: UsbPort PORT MAP(
+			inputPort 	=> UsbPortInputSignal,
+			outputPort	=> UsbPortOutputSignal			
+);
+
+
+uSLCDC: SLCDC PORT MAP(
+			MCLK	 	=>	MCLK,
+			reset 	=> reset,
+			NOT_SS	=> UsbPortOutputSignal(0),
+			SCLK		=> UsbPortOutputSignal(1),
+			SDX		=> UsbPortOutputSignal(2),
+			WrL		=> WrLSignal,
+			Dout		=> DoutSignal
+			
+);
+
+uLCD: LCD PORT MAP(
+			Din		=> DoutSignal,
+			MCLK		=> MCLK,
+			reset		=> reset,
+			enable	=> enable,
+			Dout		=> Dout
+);
+
+
+
+
+end arq_SLCDC_USBPORT;

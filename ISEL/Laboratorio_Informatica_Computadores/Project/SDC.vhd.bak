@@ -1,0 +1,88 @@
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.all;
+
+ENTITY SDC IS
+	PORT( MCLK,reset : IN STD_LOGIC;
+			NOT_SS, SCLK, SDX, Sclose, Sopen, Psensor: IN STD_LOGIC; --software
+			OnOff, busy : OUT STD_LOGIC;
+			Dout : OUT STD_LOGIC_VECTOR(4 downto 0)
+	);
+END SDC;
+
+
+ARCHITECTURE arq_SDC OF SDC IS
+
+
+component COUNTER
+	PORT(  CLK : in std_logic;
+		E : in std_logic;
+		clr: in std_logic;
+		R : out std_logic_vector (3 downto 0)
+		);
+end component;
+
+
+
+
+COMPONENT SerialReceiverSDC
+	port(
+		SDX, SCLK, SS, accept, MCLK, reset : in std_logic;
+		DXval, busy : out std_logic;
+		data : out std_logic_vector (4 downto 0)
+	);
+END COMPONENT;
+
+COMPONENT DoorController 
+	port( Dval,clk,reset, Sclose, Sopen, Psensor : IN STD_LOGIC;
+	   OnOff, done, OpenClose : OUT STD_LOGIC;
+		Din : IN STD_LOGIC_VECTOR(4 downto 0);
+		Dout : OUT STD_LOGIC_VECTOR(4 downto 0)
+	);
+END COMPONENT;	
+
+COMPONENT CLKDIV is
+	generic(div: natural := 50000000);
+	port ( clk_in: in std_logic;
+			 clk_out: out std_logic);
+END COMPONENT;
+
+signal DXvalSignal, SCLKSignal, MCLKDivSignal, acceptDoneSignal: STD_LOGIC;
+signal DataSignal : STD_LOGIC_VECTOR (4 downto 0);
+signal counterSignal : STD_LOGIC_VECTOR (3 downto 0);
+
+begin
+
+WrL <= WrLSignal;
+
+uCLKDIV : CLKDIV generic map(2)  port map( 
+		 clk_in => MCLK,
+		 clk_out => MCLKDivSignal
+);
+
+uSerialReceiver: SerialReceiverSDC PORT MAP (
+					SDX    => SDX,
+					SCLK   => SCLK,
+					SS 	 => NOT_SS,  
+					accept => acceptDoneSignal,
+					MCLK	 => MCLKDivSignal,
+					reset	 => reset,
+					DXval	 => DXvalSignal,
+					data	 => DataSignal,
+					busy	 => busy
+					); 
+					
+uDoorController: DoorController PORT MAP (
+					Dval  => DXvalSignal,
+					clk	=> MCLKDivSignal,
+					reset => reset,
+					done	=> acceptDoneSignal,
+					Din	=> DataSignal, 
+					Dout	=> Dout,
+					Sclose => Sclose,
+					Sopen => Sopen,
+					Psensor => Psensor
+					);
+					
+end arq_SDC;					
+					
+					

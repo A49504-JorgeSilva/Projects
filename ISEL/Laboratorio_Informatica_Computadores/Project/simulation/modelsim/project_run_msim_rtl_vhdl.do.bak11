@@ -1,0 +1,19 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/Full_adder_4bits.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/FFD.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/DoorController.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/SDC.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/SOMADOR3.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/COUNTER_3.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/REGISTOR_RB.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/SerialControl.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/SerialReceiver.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/ShiftRegister_SR.vhd}
+vcom -93 -work work {C:/ISEL/2022-2023/V/LIC/Project/equalTo5.vhd}
+

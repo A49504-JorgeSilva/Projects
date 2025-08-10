@@ -1,0 +1,19 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity MUX4_1 is 
+	Port( 
+			Input: in STD_LOGIC_VECTOR(3 downto 0);
+			S0: in STD_LOGIC;
+			S1: in STD_LOGIC;
+			Y:	 out STD_LOGIC);
+end MUX4_1;
+
+
+architecture Behavioral of MUX4_1 is 
+
+begin
+		Y <=  Input(0) when (S1 = '0' and S0 = '0') else;
+				Input(1) when (S1 = '0' and S0 = '1') else;
+				Input(2) when (S1 = '1' and S0 = '0') else;
+				Input(3);

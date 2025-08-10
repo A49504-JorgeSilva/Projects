@@ -1,0 +1,59 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity CounterLogic_4bit is
+    Port ( en : in  STD_LOGIC;
+           ndecInc : in  STD_LOGIC;
+           operandA : in  STD_LOGIC_VECTOR (3 downto 0);
+           R : out  STD_LOGIC_VECTOR (3 downto 0));
+end CounterLogic_3bit;
+
+architecture Structural of CounterLogic_4bit is
+
+	COMPONENT adder4bit
+	PORT(
+		A : IN std_logic_vector(3 downto 0);
+		B : IN std_logic_vector(3 downto 0);
+		CI : IN std_logic;          
+		R : OUT std_logic_vector(3 downto 0);
+		CO : OUT std_logic
+		);
+	END COMPONENT;
+	
+	COMPONENT MUX2_1
+	PORT(
+		I0 : IN std_logic_vector(3 downto 0);
+		I1 : IN std_logic_vector(3 downto 0);
+		sel : IN std_logic;          
+		Y : OUT std_logic_vector(3 downto 0)
+		);
+	END COMPONENT;
+	
+	signal operandB : STD_LOGIC_VECTOR(3 downto 0) ;
+	signal increment : STD_LOGIC_VECTOR(3 downto 0) ;
+	
+begin
+
+	U2_adder4bit: adder4bit PORT MAP(
+		A => operandA,
+		B => operandB,
+		CI => '0',
+		R => R,
+		CO => open
+	);
+	
+	U0_MUX2_1: MUX2_1 PORT MAP(
+		I0 => "1111",
+		I1 => "0001",
+		sel => ndecInc,
+		Y => increment
+	);
+	
+	U1_MUX2_1: MUX2_1 PORT MAP(
+		I0 => "0000",
+		I1 => increment,
+		sel => en,
+		Y => operandB
+	);
+
+end Structural;

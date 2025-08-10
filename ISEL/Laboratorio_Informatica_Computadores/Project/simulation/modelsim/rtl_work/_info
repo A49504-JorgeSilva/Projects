@@ -1,0 +1,568 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/simulation/modelsim
+Eclkdiv
+Z1 w1686059308
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 10
+R0
+Z5 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Clk_div.vhd
+Z6 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Clk_div.vhd
+l0
+L5 1
+VZ=f7g^c?a5zF`2O:4UlYN0
+!s100 `V>M>?BkYR7zEBSMA5V8A0
+Z7 OV;C;2020.1;71
+31
+Z8 !s110 1686061441
+!i10b 1
+Z9 !s108 1686061441.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Clk_div.vhd|
+Z11 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Clk_div.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Abhv
+R2
+R3
+R4
+DEx4 work 6 clkdiv 0 22 Z=f7g^c?a5zF`2O:4UlYN0
+!i122 10
+l16
+L11 22
+VgbaYXVPKT2[U5kSbZMFS63
+!s100 <1TaS59>[IjzZo4K_;_?R1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Ecounter
+R1
+R3
+R4
+!i122 4
+R0
+Z14 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Counter.vhd
+Z15 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Counter.vhd
+l0
+L4 1
+VO]Y2UIdgcdMeMgGF9dmSh1
+!s100 P[i6:HfSFR0U^ZHJ=83@:1
+R7
+31
+R8
+!i10b 1
+R9
+Z16 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Counter.vhd|
+Z17 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Counter.vhd|
+!i113 1
+R12
+R13
+Aarq_counter
+R3
+R4
+DEx4 work 7 counter 0 22 O]Y2UIdgcdMeMgGF9dmSh1
+!i122 4
+l41
+L14 54
+VzaRZDMU`9gU^`KS9Gjj5I1
+!s100 ORCibP0gS=0U<F3``Go<;3
+R7
+31
+R8
+!i10b 1
+R9
+R16
+R17
+!i113 1
+R12
+R13
+Edecoder2_3
+Z18 w1686059309
+R3
+R4
+!i122 1
+R0
+Z19 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/decoder2_3.vhd
+Z20 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/decoder2_3.vhd
+l0
+L4 1
+VO[[COl5]a5<kjX^mX1gX`3
+!s100 257CnR]jYX^BP=<PIP:GN1
+R7
+31
+Z21 !s110 1686061440
+!i10b 1
+Z22 !s108 1686061440.000000
+Z23 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/decoder2_3.vhd|
+Z24 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/decoder2_3.vhd|
+!i113 1
+R12
+R13
+Aarq_decoder
+R3
+R4
+DEx4 work 10 decoder2_3 0 22 O[[COl5]a5<kjX^mX1gX`3
+!i122 1
+l13
+L11 13
+V?[icWknGn6ZZCL>f[HWWf2
+!s100 C4;3G_kD[H1a39BY1<Vcn2
+R7
+31
+R21
+!i10b 1
+R22
+R23
+R24
+!i113 1
+R12
+R13
+Edispatcher
+R18
+R3
+R4
+!i122 11
+R0
+Z25 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Dispatcher.vhd
+Z26 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Dispatcher.vhd
+l0
+L4 1
+V?Z]HJd0z9Z4dgS=Dg94942
+!s100 4;O41E1NGHRIDE]FMF=<Z0
+R7
+31
+Z27 !s110 1686061442
+!i10b 1
+Z28 !s108 1686061442.000000
+Z29 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Dispatcher.vhd|
+Z30 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Dispatcher.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R3
+R4
+DEx4 work 10 dispatcher 0 22 ?Z]HJd0z9Z4dgS=Dg94942
+!i122 11
+l22
+L12 55
+VzKKmE;_[QgQ@fdm6io7;31
+!s100 ;BXcUbcnKIjbBY4eW``N33
+R7
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R12
+R13
+Effd
+R18
+R3
+R4
+!i122 8
+R0
+Z31 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/FFD.vhd
+Z32 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/FFD.vhd
+l0
+L4 1
+VlLnJhUY99`]7^:0M0ZT@z3
+!s100 7zIA7N0c8k?G4DH:]Q7>;3
+R7
+31
+R8
+!i10b 1
+R9
+Z33 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/FFD.vhd|
+Z34 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/FFD.vhd|
+!i113 1
+R12
+R13
+Alogicfunction
+R3
+R4
+DEx4 work 3 ffd 0 22 lLnJhUY99`]7^:0M0ZT@z3
+!i122 8
+l16
+Z35 L14 9
+VXLGJhA0YLNkWk3eiz=LFX0
+!s100 EbhLHDh93W5h:OfQP8>M81
+R7
+31
+R8
+!i10b 1
+R9
+R33
+R34
+!i113 1
+R12
+R13
+Efull_adder_4bits
+R18
+R3
+R4
+!i122 2
+R0
+Z36 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Full_adder_4bits.vhd
+Z37 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Full_adder_4bits.vhd
+l0
+L4 1
+V2elTGC_P=njB<=:mAcNMV1
+!s100 ]CC;kKS<YgX<Ih]^JC:Za2
+R7
+31
+R8
+!i10b 1
+R22
+Z38 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Full_adder_4bits.vhd|
+Z39 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Full_adder_4bits.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R3
+R4
+DEx4 work 16 full_adder_4bits 0 22 2elTGC_P=njB<=:mAcNMV1
+!i122 2
+l16
+R35
+VUD7^0K><Z5T?ABOeQ]ZVf0
+!s100 khcaHg3Ibi_C6_OS>Y0DK0
+R7
+31
+R8
+!i10b 1
+R22
+R38
+R39
+!i113 1
+R12
+R13
+Ekey_control
+R18
+R3
+R4
+!i122 6
+R0
+Z40 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_control.vhd
+Z41 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_control.vhd
+l0
+L4 1
+VfaaT`mg2WESe>8=aNmIcI1
+!s100 3XndMbJ`RafCRanQmf5IX0
+R7
+31
+R8
+!i10b 1
+R9
+Z42 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_control.vhd|
+Z43 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_control.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R3
+R4
+DEx4 work 11 key_control 0 22 faaT`mg2WESe>8=aNmIcI1
+!i122 6
+l21
+L15 42
+Vz0C]KC_SK1;fVAHY3REAU0
+!s100 MHkN[;4Iz`IFHLGa?FGf71
+R7
+31
+R8
+!i10b 1
+R9
+R42
+R43
+!i113 1
+R12
+R13
+Ekey_decode
+R18
+R3
+R4
+!i122 9
+R0
+Z44 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_decode.vhd
+Z45 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_decode.vhd
+l0
+L4 1
+V7Z46mMT]F5`l5;P8i9P8K2
+!s100 PW_KhK^VM18A4FoR1nUeG2
+R7
+31
+R8
+!i10b 1
+R9
+Z46 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_decode.vhd|
+Z47 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_decode.vhd|
+!i113 1
+R12
+R13
+Aarq_keydecode
+R3
+R4
+DEx4 work 10 key_decode 0 22 7Z46mMT]F5`l5;P8i9P8K2
+!i122 9
+l45
+L14 62
+V;MJjKP3fX2XSjznOTIU?e1
+!s100 kj0?6@S;XKmUT=f6XU3HE0
+R7
+31
+R8
+!i10b 1
+R9
+R46
+R47
+!i113 1
+R12
+R13
+Ekey_scan
+R18
+R3
+R4
+!i122 5
+R0
+Z48 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_scan.vhd
+Z49 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_scan.vhd
+l0
+L4 1
+VhHN<RdAW^BU^J9Hl[Tbnm1
+!s100 8fiN4:>6zXKdEAib?jCRA2
+R7
+31
+R8
+!i10b 1
+R9
+Z50 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_scan.vhd|
+Z51 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_scan.vhd|
+!i113 1
+R12
+R13
+Aarq_key_scan
+R3
+R4
+DEx4 work 8 key_scan 0 22 hHN<RdAW^BU^J9Hl[Tbnm1
+!i122 5
+l43
+L16 65
+V[SzM]iXgXXH`]GD??Soah3
+!s100 kXfo0c7n65]lhSdUAKQE`2
+R7
+31
+R8
+!i10b 1
+R9
+R50
+R51
+!i113 1
+R12
+R13
+Emux4_1
+Z52 w1686059310
+R3
+R4
+!i122 0
+R0
+Z53 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/mux4_1.vhd
+Z54 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/mux4_1.vhd
+l0
+L4 1
+Vf6>U?PdT`0VCMdGHk6[Pj1
+!s100 hmbIFe3jnmfoM>1ED5Klg1
+R7
+31
+R21
+!i10b 1
+R22
+Z55 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/mux4_1.vhd|
+Z56 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/mux4_1.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R3
+R4
+DEx4 work 6 mux4_1 0 22 f6>U?PdT`0VCMdGHk6[Pj1
+!i122 0
+l19
+L13 12
+V>8LKA;>>Y2]T`A[_3?DOf1
+!s100 OVN9:faIogYnhN6UHHdjT1
+R7
+31
+R21
+!i10b 1
+R22
+R55
+R56
+!i113 1
+R12
+R13
+Eregistor
+R52
+R3
+R4
+!i122 7
+R0
+Z57 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Registor.vhd
+Z58 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Registor.vhd
+l0
+L4 1
+VJ4^ie?eo[8oMcPn@ISW@j0
+!s100 A;4nS9=zgnbH<QBCd2K^J1
+R7
+31
+R8
+!i10b 1
+R9
+Z59 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Registor.vhd|
+Z60 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Registor.vhd|
+!i113 1
+R12
+R13
+Aarq_registor
+R3
+R4
+DEx4 work 8 registor 0 22 J4^ie?eo[8oMcPn@ISW@j0
+!i122 7
+l30
+L15 58
+VN9kHW8z3UJ8Ro;F4V`12S3
+!s100 LDI9YBmKz91][n2YYi=A>3
+R7
+31
+R8
+!i10b 1
+R9
+R59
+R60
+!i113 1
+R12
+R13
+Eslcdc
+Z61 w1686059311
+R3
+R4
+!i122 12
+R0
+Z62 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/SLCDC.vhd
+Z63 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/SLCDC.vhd
+l0
+L4 1
+VGjZHN0Zk8f;dBH5]4U3YY0
+!s100 YoJHID:Tl<5izdC[9@oYQ0
+R7
+31
+R27
+!i10b 1
+R28
+Z64 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/SLCDC.vhd|
+Z65 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/SLCDC.vhd|
+!i113 1
+R12
+R13
+Aarq_slcdc
+R3
+R4
+DEx4 work 5 slcdc 0 22 GjZHN0Zk8f;dBH5]4U3YY0
+!i122 12
+l58
+L13 95
+V9VzPnOQE`c=U^4lJ8zaeL3
+!s100 YHIS8D9U[HUYfJ?C?:JlA0
+R7
+31
+R27
+!i10b 1
+R28
+R64
+R65
+!i113 1
+R12
+R13
+Esomador
+R61
+R3
+R4
+!i122 3
+R0
+Z66 8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Somador.vhd
+Z67 FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Somador.vhd
+l0
+L4 1
+Vo2H1GmTYL6OY`8HQjEb<81
+!s100 :7=1R<?WcfCmRoGGTAH`11
+R7
+31
+R8
+!i10b 1
+R9
+Z68 !s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Somador.vhd|
+Z69 !s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Somador.vhd|
+!i113 1
+R12
+R13
+Aarq_somador
+R3
+R4
+DEx4 work 7 somador 0 22 o2H1GmTYL6OY`8HQjEb<81
+!i122 3
+l27
+L14 49
+Vd;`^=S3`?kL2PT8C6]jFU2
+!s100 AeScbY2cl1jBOLcZkjD;f3
+R7
+31
+R8
+!i10b 1
+R9
+R68
+R69
+!i113 1
+R12
+R13
+Eusbport
+w1686059312
+R3
+R4
+!i122 13
+R0
+8C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd
+FC:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd
+l0
+L25 1
+VH<Ia8`dE_cdIGLca01JFN3
+!s100 hl94EPOkeW;iYO_Coen0c3
+R7
+31
+R27
+!i10b 1
+R28
+!s90 -reportprogress|300|-93|-work|work|C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd|
+!s107 C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd|
+!i113 1
+R12
+R13

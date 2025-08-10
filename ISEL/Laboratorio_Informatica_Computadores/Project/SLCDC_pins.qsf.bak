@@ -1,0 +1,47 @@
+#============================================================
+# CLOCK
+#============================================================
+
+set_location_assignment PIN_P11 -to MCLK
+
+#============================================================
+# SW
+#============================================================
+set_location_assignment PIN_C10 -to reset
+
+
+
+#==========================================================
+#LCD
+#==========================================================
+set_location_assignment PIN_W8     -to Dout[0] 
+set_location_assignment PIN_V5     -to WrL    
+
+set_location_assignment PIN_AA15   -to Dout[1]
+set_location_assignment PIN_W13    -to Dout[2]
+set_location_assignment PIN_AB13   -to Dout[3]
+set_location_assignment PIN_Y11    -to Dout[4]
+
+===============================
+#LED
+================================
+
+#============================================================
+# LED
+#============================================================
+set_location_assignment PIN_A8 -to LDout[0] 
+set_location_assignment PIN_A9 -to LWrL
+set_location_assignment PIN_A10 -to LDout[1]
+set_location_assignment PIN_B10 -to LDout[2]
+set_location_assignment PIN_D13 -to LDout[3]
+set_location_assignment PIN_C13 -to LDout[4]
+#set_location_assignment PIN_E14 -to LEDR[6]
+#set_location_assignment PIN_D14 -to LEDR[7]
+#set_location_assignment PIN_A11 -to LEDR[8]
+#set_location_assignment PIN_B11 -to LEDR[9]
+
+
+
+#============================================================
+# End of pin and io_standard assignments
+#============================================================

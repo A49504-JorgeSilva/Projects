@@ -1,0 +1,174 @@
+# Reading pref.tcl
+# do project_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/mux4_1.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:00 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/mux4_1.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity MUX4_1
+# -- Compiling architecture Behavioral of MUX4_1
+# End time: 15:24:00 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/decoder2_3.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:00 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/decoder2_3.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity DECODER2_3
+# -- Compiling architecture arq_DECODER of DECODER2_3
+# End time: 15:24:00 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Full_adder_4bits.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:00 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Full_adder_4bits.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity FULL_ADDER_4BITS
+# -- Compiling architecture Behavioral of FULL_ADDER_4BITS
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Somador.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:01 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Somador.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity SOMADOR
+# -- Compiling architecture arq_SOMADOR of SOMADOR
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Counter.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:01 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Counter.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity COUNTER
+# -- Compiling architecture arq_COUNTER of COUNTER
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_scan.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:01 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_scan.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity KEY_SCAN
+# -- Compiling architecture arq_KEY_SCAN of KEY_SCAN
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_control.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:01 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_control.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity KEY_CONTROL
+# -- Compiling architecture behavioral of KEY_CONTROL
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Registor.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:01 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Registor.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity REGISTOR
+# -- Compiling architecture arq_REGISTOR of REGISTOR
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/FFD.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:01 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/FFD.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity FFD
+# -- Compiling architecture logicFunction of FFD
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_decode.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:01 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Key_decode.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Key_Decode
+# -- Compiling architecture arq_KeyDecode of Key_Decode
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Clk_div.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:01 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Clk_div.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity CLKDIV
+# -- Compiling architecture bhv of CLKDIV
+# End time: 15:24:01 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Dispatcher.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:02 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/Dispatcher.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Dispatcher
+# -- Compiling architecture behavioral of Dispatcher
+# End time: 15:24:02 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/SLCDC.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:02 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/SLCDC.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity SLCDC
+# -- Compiling architecture arq_SLCDC of SLCDC
+# End time: 15:24:02 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:24:02 on Jun 06,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity UsbPort
+# -- Compiling architecture bdf_type of UsbPort
+# ** Error: C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd(90): (vcom-1035) Formal port "tdo" has OPEN or no actual associated with it.
+# ** Note: C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd(92): VHDL Compiler exiting
+# End time: 15:24:02 on Jun 06,2023, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/vcom failed.
+# Error in macro ./project_run_msim_rtl_vhdl.do line 21
+# C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/vcom failed.
+#     while executing
+# "vcom -93 -work work {C:/Users/jorge/Desktop/ISEL/4 Semestre/LIC/Project/UsbPort.vhd}"

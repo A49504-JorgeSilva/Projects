@@ -1,0 +1,62 @@
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.all;
+
+ENTITY SLCDC IS
+	PORT( MCLK,reset : IN STD_LOGIC;
+			NOT_SS, SCLK, SDX: IN STD_LOGIC; --software
+			WrL, done : OUT STD_LOGIC;
+			Dout : OUT STD_LOGIC_VECTOR(3 downto 0)
+	);
+END SLCDC;
+
+
+ARCHITECTURE arq_SLCDC OF SLCDC IS
+
+
+
+COMPONENT SerialReceiverSLCDC
+	port(
+		SDX, SCLK, SS, accept, MCLK, reset : in std_logic;
+		DXval : out std_logic;
+		data : out std_logic_vector (4 downto 0)
+	);
+END COMPONENT;
+
+COMPONENT Dispatcher 
+	port( Dval,clk,reset : IN STD_LOGIC;
+			WrL, done : OUT STD_LOGIC;
+			Din : IN STD_LOGIC_VECTOR(4 downto 0);
+			Dout : OUT STD_LOGIC_VECTOR(4 downto 0)
+	);
+END COMPONENT;	
+
+
+signal DXvalSignal, SCLKSignal, MCLKSignal, acceptDoneSignal : STD_LOGIC;
+signal DataSignal : STD_LOGIC_VECTOR (4 downto 0);
+
+begin
+
+SerialReceiver: SerialReceiverSLCDC PORT MAP (
+					SDX    => SDX,
+					SCLK   => SCLK,
+					SS 	 => NOT_SS,  --To negate
+					accept => acceptDoneSignal,
+					MCLK	 => ,
+					reset	 => reset,
+					DXval	 => DXvalSignal,
+					data	 => DataSignal					
+					); 
+					
+Dispatcher: Dispatcher PORT MAP (
+					Dval  => DXvalSignal,
+					clk	=> ,
+					reset => reset,
+					WrL	=> WrL,
+					done	=> acceptDoneSignal,
+					Din	=> DataSignal, 
+					Dout	=> Dout
+					);					
+					
+					
+					
+					

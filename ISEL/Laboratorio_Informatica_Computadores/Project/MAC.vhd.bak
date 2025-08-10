@@ -1,0 +1,32 @@
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.all;
+
+ENTITY MAC IS
+	PORT( MCLK,reset : IN STD_LOGIC;
+			putnget, incPut, incGet, dec: IN STD_LOGIC; --software
+			full,empty : OUT STD_LOGIC;
+			Address : OUT STD_LOGIC_VECTOR(2 downto 0)
+	);
+END SLCDC;
+
+component Counter_3bit is
+    Port ( CLK : in  STD_LOGIC;
+           RST : in  STD_LOGIC;
+           ndecInc : in  STD_LOGIC;
+           en : in  STD_LOGIC;
+           Count : out  STD_LOGIC_VECTOR (2 downto 0));
+end Counter_3bit;
+
+
+ARCHITECTURE arq_MAC OF MAC IS
+
+
+Ucounter : Counter_3bit port map (
+		CLK => MCLK,
+		RST => reset,
+		ndecInc => dec,
+		en => incPut,
+		Count => Adress
+);
+
+end arq_MAC;

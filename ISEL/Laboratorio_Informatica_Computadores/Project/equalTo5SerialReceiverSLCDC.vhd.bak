@@ -1,0 +1,16 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity equalTo5SerialReceiverSLCDC is
+port( D : IN STD_LOGIC_VECTOR(3 downto 0);
+		F : OUT STD_LOGIC 
+);
+end equalto5;
+
+architecture arq_equalTo5SerialReceiverSLCDC of equalTo5SerialReceiverSLCDC is
+
+begin
+
+F<= NOT D(3) AND D(2) AND NOT D(1) AND D(0);
+
+end arq_equalTo5SerialReceiverSLCDC

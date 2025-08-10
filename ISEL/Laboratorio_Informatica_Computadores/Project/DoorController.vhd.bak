@@ -1,0 +1,68 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity DoorController is
+port( Dval,clk,reset, Sclose, Sopen, Psensor : IN STD_LOGIC;
+	   OnOff, done : OUT STD_LOGIC;
+		Din : IN STD_LOGIC_VECTOR(4 downto 0);
+		Dout : OUT STD_LOGIC_VECTOR(4 downto 0)
+);
+end DoorController;
+
+architecture behavioral of DoorController is
+
+
+	
+	
+type STATE_TYPE is (WAITING, OPENING, CLOSING,COMPLETED);
+
+
+signal CURRENT_STATE, NEXT_STATE : STATE_TYPE;
+
+begin
+
+
+	
+
+--		Registo Current State
+
+CURRENT_STATE <= WAITING when (reset = '1') else NEXT_STATE when rising_edge(clk);
+
+--		Máquina de Estados
+
+GenerateNextState:
+process (CURRENT_STATE, Dval, Sclose, Sopen, Psensor)
+	begin
+		case CURRENT_STATE is
+			when WAITING			=> if(Dval = '1' and Din(0) = '1') then
+												NEXT_STATE 		<= OPENING;
+											else
+												if(Dval = '1' and Din(0) = '0') then
+													NEXT_STATE 		<= CLOSING;											else
+												NEXT_STATE 		<= WAITING;
+											end if;
+																								
+													
+			when OPENING			=> if(Sopen = '1' and Din(0) = '1') then
+												NEXT_STATE 		<= COMPLETED;
+											else
+												if(Sopen = '0') then
+													NEXT_STATE 		<= OPENING;
+											else
+												if(Sopen = '1' and Din(0) = '0') then
+													NEXT_STATE 		<= CLOSING;
+											end if;
+										
+			when COMPLETED			=> NEXT_STATE 		<= WAITING;
+			
+		end case;
+
+end process;
+
+--		Outputs
+WrL <= '1' when (CURRENT_STATE = SENDING) else '0'; 
+done <= '1' when (CURRENT_STATE = COMPLETED) else '0';  
+
+Dout <= Din when (CURRENT_STATE = SENDING);
+
+end behavioral;

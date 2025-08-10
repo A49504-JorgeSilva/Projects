@@ -1,0 +1,77 @@
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.all;
+
+ENTITY KEY_SCAN IS 
+	PORT( Kscan: in std_logic;
+		Clk: in std_logic;
+		Kpress : out std_logic;
+		KEYPAD_LIN : in std_logic_vector(3 downto 0);
+		KEYPAD_CODE: out std_logic_vector(3 downto 0);
+		KEYPAD_COL : out std_logic_vector(3 downto 0)
+		);
+END KEY_SCAN;
+
+ARCHITECTURE arq_KEY_SCAN OF KEY_SCAN IS
+
+component DECODER2_4
+	PORT( S: in STD_LOGIC_VECTOR(1 downto 0);
+			Y:	 out STD_LOGIC_VECTOR(3 downto 0)
+		);
+end component;
+
+component MUX4_1
+	PORT( Input: in STD_LOGIC_VECTOR(3 downto 0);
+			S0: in STD_LOGIC;
+			S1: in STD_LOGIC;
+			Y:	 out STD_LOGIC
+		);
+end component;
+
+component COUNTER
+	PORT(  CLK : in std_logic;
+		E : in std_logic;
+		clr: in std_logic;
+		T6 : out std_logic;
+		R : out std_logic_vector (3 downto 0)
+		);
+end component;
+
+Signal Coluna, Linha: Std_Logic_Vector (1 downto 0);
+
+Signal A , B : Std_Logic;
+
+BEGIN
+
+Kpress <=  B;
+A <= Kscan and B; 
+
+KEYPAD_CODE(0) <= Linha(0);
+KEYPAD_CODE(1) <= Linha(1);
+KEYPAD_CODE(2) <= Coluna(0);
+KEYPAD_CODE(3) <= Coluna(1);
+
+UDECODER: DECODER port map( 
+	S0 => Coluna(0), 
+	S1 => Coluna(1), 
+	Y(0) => KEYPAD_COL(0), 
+	Y(1) => KEYPAD_COL(1), 
+	Y(2) => KEYPAD_COL(2)
+	Y(3) => KEYPAD_COL(3));
+
+UMUX4_1: MUX4_1 port map(
+	S0 => Linha(0), 
+	S1 => Linha(1), 
+	Input(0) => KEYPAD_LIN(0), 
+	Input(1) => KEYPAD_LIN(1), 
+	Input(2) => KEYPAD_LIN(2), 
+	Input(3) => KEYPAD_LIN(3), 
+	Y => B);
+
+UCOUNTER: COUNTER port map(
+	Clk => Clk, 
+	E => A, 
+	clr => '0', 
+	R(0) => Linha(0), 
+	R(1) => Linha(1), 
+	R(2) => Coluna(0), 
+	R(3) => Coluna(1));

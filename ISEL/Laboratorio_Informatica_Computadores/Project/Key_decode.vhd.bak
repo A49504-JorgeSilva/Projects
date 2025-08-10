@@ -1,0 +1,51 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity KeyDecode is
+port( Kack,CLK,RST : IN STD_LOGIC;
+		Kval : OUT STD_LOGIC;
+		L : IN STD_LOGIC_VECTOR(3 downto 0);
+		K,C : OUT STD_LOGIC_VECTOR(3 downto 0)
+);
+end KeyDecode;
+
+architecture arq_KeyDecode of KeyDecode is
+
+component KeyScan
+port( Kscan, CLK : IN STD_LOGIC;
+		Kpress : OUT STD_LOGIC;
+		L : IN STD_LOGIC_VECTOR(3 downto 0);
+		K,C : OUT STD_LOGIC_VECTOR(3 downto 0)
+);
+end component;
+
+
+component KeyControl
+port( Kack,Kpress,CLK,RST : IN STD_LOGIC;
+		Kval, Kscan : OUT STD_LOGIC
+);
+end component;
+
+signal KscanSignal,KpressSignal : STD_LOGIC;
+
+begin
+
+uKeyScan : KeyScan port map(
+					Kscan => KscanSignal,
+					Kpress => KpressSignal,
+					CLK => CLK,
+					L => L,
+					C => C,
+					K => K
+);
+
+uKeyControl : KeyControl port map(
+RST => RST,
+					Kack => Kack,
+					Kpress => KpressSignal,
+					CLK => CLK,
+					Kval => Kval,
+					Kscan => KscanSignal
+);
+
+end arq_KeyDecode;
