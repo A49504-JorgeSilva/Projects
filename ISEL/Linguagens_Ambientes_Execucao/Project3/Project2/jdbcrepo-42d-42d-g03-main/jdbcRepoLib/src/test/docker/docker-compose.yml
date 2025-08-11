@@ -1,0 +1,24 @@
+services:
+  chat-db:
+    container_name: chat-db
+    build:
+      # Change to parent folder jdbcRepoLib
+      context: ../../..
+      dockerfile: src/test/docker/Dockerfile-chat-db
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=changeit
+      - POSTGRES_DB=db
+    ports:
+      - "5439:5432" # Map the host port 5439 to the container port 5432
+  car-db:
+    container_name: car-db
+    build:
+      context: ../../..
+      dockerfile: src/test/docker/Dockerfile-car-db
+    environment:
+        - POSTGRES_USER=dbuser
+        - POSTGRES_PASSWORD=changeit
+        - POSTGRES_DB=cardb
+    ports:
+        - "5440:5432" # Map the host port 5440 to the container port 5432
