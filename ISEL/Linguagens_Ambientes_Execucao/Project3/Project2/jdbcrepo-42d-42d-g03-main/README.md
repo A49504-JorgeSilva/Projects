@@ -2,6 +2,16 @@
 
 Automatic implementation of a `Repository` interface for a given _domain object_.
 
+## Resumo
+
+Implementação automática do padrão **Repository** (à semelhança do Spring Data JPA) sobre JDBC puro, desenvolvida em 3 fases progressivas, todas implementadas:
+
+1. **`RepositoryReflect`** — implementação genérica via **Kotlin Reflection**, com suporte a enums e associações (carregadas recursivamente), derivando SQL e mapeamento `ResultSet → entidade` por convenção/anotações (`@Pk`, `@Column`, `@Table`).
+2. **`RepositoryDynamic`** — geração de bytecode em runtime com a **Class-File API do JDK 22**, criando uma subclasse especializada por entidade que evita reflection na instanciação (só a usa para introspeção).
+3. **`QueryableBuilder`** — API fluente e *lazy* de queries (`findAll().whereEquals(...).orderBy(...)`), que só executa o SQL ao iterar o resultado.
+
+Validado com testes de integração reais contra **PostgreSQL em Docker** (domínios de chat e de carros) e com **benchmarks JMH** que comparam baseline, reflection e geração dinâmica (a implementação por reflection é cerca de 3× mais lenta que o acesso direto).
+
 ## Github Classrooms for submission (**groups of 3 students**):
 
 * i41d - https://classroom.github.com/a/rgXxQMNw

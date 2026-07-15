@@ -4,6 +4,15 @@
 
 JSON Encoder through Reflection API.
 
+## Resumo
+
+Encoder JSON em Kotlin implementado com duas abordagens de reflection:
+
+- `fieldsToJson()` — usa a **Java Reflection API** (`Class.getDeclaredFields`) para serializar recursivamente os campos de um objeto, incluindo coleções e objetos aninhados.
+- `membersToJson()` — usa a **Kotlin Reflection API** (`KClass.memberProperties`/`memberFunctions`) para serializar também funções sem parâmetros, com suporte a anotações próprias `@ToJsonPropName` (renomear campo no JSON) e `@ToJsonFormatter` (formatação customizada de valores).
+
+Testado sobre um modelo de domínio com associações (Library/Book/Author/Classroom/Student/Grade), com os resultados validados por comparação direta com a biblioteca [Gson](https://github.com/google/gson). CI configurado em `.github/workflows/cc.yml`.
+
 ## DEADLINES
 
 1. **03-03-2025**

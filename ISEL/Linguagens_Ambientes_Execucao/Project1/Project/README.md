@@ -2,6 +2,15 @@
 
 Automatic HTTP handlers for a controller object with specific annotations.
 
+## Resumo
+
+Biblioteca Kotlin/Java que gera automaticamente handlers HTTP a partir de métodos anotados (`@AutoRoute`) de um objeto controller, ligando-os a um servidor [Javalin](https://javalin.io/) com serialização JSON via Jackson. Implementadas as **duas abordagens** propostas nos enunciados abaixo:
+
+- `AutoRouterReflect.autorouterReflect` — usa a **Java Reflection API** para descobrir e invocar os métodos anotados em runtime.
+- `AutoRouterDynamic.autorouterDynamic` — gera **bytecode em runtime** com a biblioteca [Cojen Maker](https://github.com/cojen/Maker), criando uma classe concreta por método do controller, evitando o custo de invocação por reflection.
+
+Um benchmark JMH (`autorouter-bench`) compara as duas implementações com uma baseline escrita à mão, demonstrando o *trade-off* entre simplicidade (reflection) e desempenho (geração de bytecode).
+
 ## Assignments
 
 1. Published 1-3-2023 DEADLINE: 03-4-2023
