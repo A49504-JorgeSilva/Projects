@@ -16,8 +16,7 @@ Avaliar de que forma diferentes LLMs, tipos de materiais de entrada (slides, apo
 ## 🚀 Como reproduzir os resultados
 
 1. **Escolha um prompt** na pasta `prompts/` de acordo com o tipo de material que pretende processar (PDF, GitHub, ficheiros carregados, testes, quizzes, Fichas de Unidade Curricular).
-2. **[arquitetura-app.md](app/docs/arquitetura-app.md)
-[README.md](app/README.md)Forneça ao modelo** o conteúdo da pasta correspondente em `materiais-fonte/` (ou o link do GitHub, quando aplicável).
+2. **Forneça ao modelo** o conteúdo da pasta correspondente em `materiais-fonte/` (ou o link do GitHub, quando aplicável).
 3. **Cole o prompt** na interface de um dos modelos suportados (Claude, DeepSeek ou LeChat) e envie juntamente com os ficheiros.
 4. **Guarde o output** na respectiva subpasta de `outputs/`, seguindo a mesma organização por UC.
 5. **Para ver as avaliações**, consulte a pasta `avaliacoes/`.
