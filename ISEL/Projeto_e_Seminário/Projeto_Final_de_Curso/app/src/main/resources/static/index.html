@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Material Pedagógico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Material Pedagógico</h1>
+
+        <form id="generation-form">
+            <div class="form-group">
+                <label for="objective">Objetivo</label>
+                <select id="objective">
+                    <option value="">Seleciona um objetivo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="material-type">Tipo de Material</label>
+                <select id="material-type" disabled>
+                    <option value="">Seleciona primeiro um objetivo</option>
+                </select>
+            </div>
+
+            <div class="form-group hidden" id="content-group"></div>
+
+            <button type="submit" id="submit-btn" disabled>Gerar</button>
+        </form>
+
+        <div id="result-section" class="hidden">
+            <div class="result-header">
+                <h2>Resultado</h2>
+                <button id="download-btn" class="download-btn">Descarregar .md</button>
+            </div>
+            <div id="result-content"></div>
+        </div>
+
+        <div id="error-section" class="hidden"></div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
