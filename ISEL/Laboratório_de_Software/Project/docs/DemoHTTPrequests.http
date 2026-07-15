@@ -1,0 +1,242 @@
+@baseUrl = http://localhost:8080
+# Copy token from User 1 response and paste below
+@myToken = f5525ddc-369c-4d4c-b90d-a8a5a4e6faf3
+
+### ─────────────────────────────────────
+### 6.1 - Create User 1
+### ─────────────────────────────────────
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "email": "alice@example.com"
+}
+
+### ─────────────────────────────────────
+### 6.1 - Create User 2
+### ─────────────────────────────────────
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Bob",
+  "email": "bob@example.com"
+}
+
+### ─────────────────────────────────────
+### 6.2 - Create User with duplicate email (should return 409)
+### ─────────────────────────────────────
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Alice2",
+  "email": "alice@example.com"
+}
+
+### ─────────────────────────────────────
+### 6.3 - Create Location: Portugal (COUNTRY)
+### ─────────────────────────────────────
+
+POST {{baseUrl}}/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Portugal",
+  "type": "COUNTRY"
+}
+
+### ─────────────────────────────────────
+### 6.3 - Create Location: Lisboa (REGION, parent = Portugal id=1)
+### ─────────────────────────────────────
+POST {{baseUrl}}/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Lisboa",
+  "type": "REGION",
+  "parentId": 1
+}
+
+### ─────────────────────────────────────
+### 6.3 - Create Location: Oeiras (CITY, parent = Lisboa id=2)
+### ─────────────────────────────────────
+POST {{baseUrl}}/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Oeiras",
+  "type": "CITY",
+  "parentId": 2
+}
+
+### ─────────────────────────────────────
+### 6.3 - Create Location: Paço de Arcos (MUNICIPALITY, parent = Oeiras id=3)
+### ─────────────────────────────────────
+POST {{baseUrl}}/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Paço de Arcos",
+  "type": "MUNICIPALITY",
+  "parentId": 3
+}
+
+### ─────────────────────────────────────
+### 6.4 - List children of Lisboa (id=2)
+### ─────────────────────────────────────
+GET {{baseUrl}}/locations/2/children
+
+### ─────────────────────────────────────
+### 6.5 - Create House 1 (location = Paço de Arcos id=4)
+### ─────────────────────────────────────
+POST {{baseUrl}}/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "Beach House",
+  "locationId": 4,
+  "areaSqMt": 120.0,
+  "pricePerNight": 150.0,
+  "description": "A lovely house near the beach",
+  "ownerId": 1
+}
+
+### ─────────────────────────────────────
+### 6.5 - Create House 2 (location = Paço de Arcos id=4)
+### ─────────────────────────────────────
+POST {{baseUrl}}/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "Mountain View",
+  "locationId": 4,
+  "areaSqMt": 90.0,
+  "pricePerNight": 100.0,
+  "description": "Great views of the hills",
+  "ownerId": 1
+}
+
+### ─────────────────────────────────────
+### 6.5 - Create House 3 (location = Paço de Arcos id=4)
+### ─────────────────────────────────────
+POST {{baseUrl}}/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "City Flat",
+  "locationId": 4,
+  "areaSqMt": 65.0,
+  "pricePerNight": 80.0,
+  "description": "Cozy flat in the center",
+  "ownerId": 2
+}
+
+### ─────────────────────────────────────
+### 6.6 - List all houses
+### ─────────────────────────────────────
+GET {{baseUrl}}/houses
+
+### ─────────────────────────────────────
+### 6.7 - Show details of house 1
+### ─────────────────────────────────────
+GET {{baseUrl}}/houses/1
+
+### ─────────────────────────────────────
+### 6.8 - Create Booking 1 (house 1, user 1)
+### ─────────────────────────────────────
+POST {{baseUrl}}/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "2026-07-01",
+  "endDate": "2026-07-05"
+}
+
+### ─────────────────────────────────────
+### 6.8 - Create Booking 2 (house 1, user 1)
+### ─────────────────────────────────────
+POST {{baseUrl}}/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "2026-07-10",
+  "endDate": "2026-07-15"
+}
+
+### ─────────────────────────────────────
+### 6.9 - Invalid date format (should return 400)
+### ─────────────────────────────────────
+POST {{baseUrl}}/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "not-a-date",
+  "endDate": "2026-07-20"
+}
+
+### ─────────────────────────────────────
+### 6.9 - Overlapping booking (should return 409)
+### ─────────────────────────────────────
+POST {{baseUrl}}/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "2026-07-03",
+  "endDate": "2026-07-12"
+}
+
+### ─────────────────────────────────────
+### 6.10 - List all bookings for house 1
+### ─────────────────────────────────────
+GET {{baseUrl}}/bookings?hid=1
+Authorization: Bearer {{myToken}}
+
+### ─────────────────────────────────────
+### 6.11 - Show details of booking 1
+### ─────────────────────────────────────
+GET {{baseUrl}}/bookings/1
+Authorization: Bearer {{myToken}}
+
+### ─────────────────────────────────────
+### 6.12 - List houses with pagination (page size 2) - Page 1
+### ─────────────────────────────────────
+GET {{baseUrl}}/houses?skip=0&limit=2
+
+### ─────────────────────────────────────
+### 6.12 - Page 2
+### ─────────────────────────────────────
+GET {{baseUrl}}/houses?skip=2&limit=2
+
+### ─────────────────────────────────────
+### 6.12 - Page 3 (should return empty list - end of results)
+### ─────────────────────────────────────
+GET {{baseUrl}}/houses?skip=4&limit=2
+
+### ─────────────────────────────────────
+### 6.13 - Delete booking 2
+### ─────────────────────────────────────
+DELETE {{baseUrl}}/bookings/2
+Authorization: Bearer {{myToken}}
+
+### ─────────────────────────────────────
+### 6.14 - Show deleted booking (should return 404)
+### ─────────────────────────────────────
+GET {{baseUrl}}/bookings/2
+Authorization: Bearer {{myToken}}

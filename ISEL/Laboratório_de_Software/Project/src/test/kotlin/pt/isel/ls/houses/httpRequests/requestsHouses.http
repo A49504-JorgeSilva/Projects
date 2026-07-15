@@ -1,0 +1,223 @@
+### Tests used in Postman for Houses
+
+#Jorge's token
+@myToken = 49692716-dc2d-41ea-ad4d-530eff479a35
+#Przemek's token
+#@myToken = 51d4cd97-d511-4236-8c71-2c77b9b81267
+
+#Miguel's token
+#@myToken = 435c858c-3cc3-4558-9624-eada46b1ea20
+
+### Create House 1 (deve dar 201)
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "House 1",
+  "locationId": 5,
+  "areaSqMt": 100.0,
+  "pricePerNight": 50.0,
+  "description": "A nice house"
+}
+
+### Create House 2 (deve dar 201)
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "House 2",
+  "locationId": 5,
+  "areaSqMt": 120.0,
+  "pricePerNight": 75.0,
+  "description": "A super nice house"
+}
+
+### Create House 3
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 3", "locationId": 5, "areaSqMt": 80.0, "pricePerNight": 60.0, "description": "A cozy house" }
+
+### Create House 4
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 4", "locationId": 5, "areaSqMt": 90.0, "pricePerNight": 70.0, "description": "A modern house"}
+
+### Create House 5
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 5", "locationId": 5, "areaSqMt": 110.0, "pricePerNight": 80.0, "description": "A spacious house"}
+
+### Create House 6
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 6", "locationId": 5, "areaSqMt": 75.0, "pricePerNight": 45.0, "description": "A small house"}
+
+### Create House 7
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 7", "locationId": 5, "areaSqMt": 130.0, "pricePerNight": 95.0, "description": "A large house"}
+
+### Create House 8
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 8", "locationId": 5, "areaSqMt": 95.0, "pricePerNight": 55.0, "description": "A quiet house"}
+
+### Create House 9
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 9", "locationId": 5, "areaSqMt": 105.0, "pricePerNight": 65.0, "description": "A bright house" }
+
+### Create House 10
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 10", "locationId": 5, "areaSqMt": 115.0, "pricePerNight": 85.0, "description": "A sunny house"}
+
+### Create House 11
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 11", "locationId": 5, "areaSqMt": 88.0, "pricePerNight": 72.0, "description": "A garden house" }
+
+### Create House 12
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 12", "locationId": 5, "areaSqMt": 99.0, "pricePerNight": 78.0, "description": "A riverside house" }
+
+### Create House 13
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "title": "House 13", "locationId": 5, "areaSqMt": 120.0, "pricePerNight": 90.0, "description": "A hillside house" }
+
+### Create House - title em branco (deve dar 400)
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "   ",
+  "locationId": 5,
+  "areaSqMt": 100.0,
+  "pricePerNight": 50.0,
+  "description": "A nice house",
+  "ownerId": 1
+}
+
+### Create House - locationId inválido (deve dar 400)
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "House 1",
+  "locationId": -1,
+  "areaSqMt": 100.0,
+  "pricePerNight": 50.0,
+  "description": "A nice house",
+  "ownerId": 1
+}
+
+### Create House - areaSqMt inválida (deve dar 400)
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "House 1",
+  "locationId": 5,
+  "areaSqMt": 0,
+  "pricePerNight": 50.0,
+  "description": "A nice house",
+  "ownerId": 1
+}
+
+### Create House - pricePerNight inválido (deve dar 400)
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "House 1",
+  "locationId": 5,
+  "areaSqMt": 100.0,
+  "pricePerNight": 0,
+  "description": "A nice house",
+  "ownerId": 1
+}
+
+### Create House - description inválida (deve dar 400)
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "House 1",
+  "locationId": 5,
+  "areaSqMt": 100.0,
+  "pricePerNight": 50.0,
+  "description": "   ",
+  "ownerId": 1
+}
+
+### Create House - locationId não é LOCALITY (deve dar 400)
+POST http://localhost:8080/houses
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "title": "Invalid House",
+  "locationId": 1,
+  "areaSqMt": 100.0,
+  "pricePerNight": 50.0,
+  "description": "Location is a COUNTRY, not a LOCALITY"
+}
+
+### Create House (Missing Token) (Should return 401 Unauthorized)
+POST http://localhost:8080/houses
+Content-Type: application/json
+
+{
+  "title": "House 1",
+  "locationId": 5,
+  "areaSqMt": 100.0,
+  "pricePerNight": 50.0,
+  "description": "A nice house",
+  "ownerId": 1
+}
+
+### Get House 1 por id
+GET http://localhost:8080/houses/1
+
+### Get House 2 por id
+GET http://localhost:8080/houses/2
+
+### Get House - id inexistente (deve dar 404)
+GET http://localhost:8080/houses/999
+
+### Get House - id inválido (deve dar 400)
+GET http://localhost:8080/houses/abc
+
+### Get All Houses
+GET http://localhost:8080/houses

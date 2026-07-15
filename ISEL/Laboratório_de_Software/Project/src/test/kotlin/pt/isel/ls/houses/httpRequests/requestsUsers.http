@@ -1,0 +1,111 @@
+### Tests used in Postman for Users
+
+#Jorge's token
+@myToken = 44f2a94f-88e7-4f38-8ced-b5667aefae12
+#Przemek's token
+#@myToken = 35bcb379-8a17-4d8a-a5ea-b3c8fd30aaa3
+
+#Miguel's token
+#@myToken = 435c858c-3cc3-4558-9624-eada46b1ea20
+
+### Create User 1
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "email": "alice@example.com",
+  "password": "alice123"
+}
+
+### Create User 2
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "Bob",
+  "email": "bob@example.com",
+  "password": "bob123"
+}
+
+### Create User 3
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "Carlos",
+  "email": "carlos@example.com",
+  "password": "carlos123"
+}
+
+### Create User - email duplicado (deve dar 409)
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "Alice2",
+  "email": "alice@example.com",
+  "password": "alice123"
+}
+
+### Create User - nome em branco (deve dar 400)
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "  ",
+  "email": "alice@example.com",
+  "password": "alice123"
+}
+
+### Create User - email inválido (deve dar 400)
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "email": "invalidemail.com",
+  "password": "alice123"
+}
+
+### Get User por id
+GET http://localhost:8080/users/1
+Authorization: Bearer {{myToken}}
+
+### Get User por id (Missing Token) (Should return 401 Unauthorized)
+GET http://localhost:8080/users/1
+
+### Get User - id inexistente (deve dar 404)
+GET http://localhost:8080/users/999
+Authorization: Bearer {{myToken}}
+
+### Get User - id inválido (deve dar 400)
+GET http://localhost:8080/users/abc
+Authorization: Bearer {{myToken}}
+
+### Login (Success) (deve dar 200 com id e token)
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "alice123"
+}
+
+### Login - password errada (deve dar 401)
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "wrongpassword"
+}
+
+### Login - email inexistente (deve dar 404)
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "email": "nonexistent@example.com",
+  "password": "alice123"
+}

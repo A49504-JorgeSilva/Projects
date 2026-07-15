@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Main-Class: pt.isel.ls.houses.server.HousesServerKt
+Class-Path: 2526-2-LEIC43D-G04.jar http4k-server-jetty-6.1.0.1.jar http4
+ k-realtime-core-6.1.0.1.jar http4k-core-6.1.0.1.jar kotlinx-datetime-jv
+ m-0.6.2.jar kotlinx-serialization-core-jvm-1.8.0.jar kotlinx-serializat
+ ion-json-jvm-1.8.0.jar kotlin-stdlib-2.3.0.jar slf4j-simple-2.0.9.jar p
+ ostgresql-42.7.13.jar jbcrypt-0.4.jar annotations-13.0.jar jetty-websoc
+ ket-jetty-server-12.0.16.jar jetty-websocket-core-server-12.0.16.jar je
+ tty-server-12.0.16.jar jetty-websocket-jetty-common-12.0.16.jar jetty-w
+ ebsocket-core-common-12.0.16.jar jetty-http-12.0.16.jar jetty-io-12.0.1
+ 6.jar jetty-util-12.0.16.jar slf4j-api-2.0.16.jar checker-qual-3.55.1.j
+ ar jetty-websocket-jetty-api-12.0.16.jar
+

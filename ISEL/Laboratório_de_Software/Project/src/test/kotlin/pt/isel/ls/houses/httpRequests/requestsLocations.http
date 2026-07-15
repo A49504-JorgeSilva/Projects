@@ -1,0 +1,147 @@
+### Tests used in Postman for Locations
+
+#Jorge's token
+@myToken = 49692716-dc2d-41ea-ad4d-530eff479a35
+#Przemek's token
+#@myToken = 51d4cd97-d511-4236-8c71-2c77b9b81267
+
+#Miguel's token
+#@myToken = 435c858c-3cc3-4558-9624-eada46b1ea20
+
+### Create Location - COUNTRY
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Portugal",
+  "type": "COUNTRY"
+}
+
+### Create Location 2 - COUNTRY
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+"name": "Spain",
+"type": "COUNTRY"
+}
+
+### Create Location - REGION
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Norte",
+  "type": "REGION",
+  "parentId": 1
+}
+
+### Create Location - CITY (filho de Norte)
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Porto",
+  "type": "CITY",
+  "parentId": 3
+}
+
+### Create Location - MUNICIPALITY (filho de Porto)
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Matosinhos",
+  "type": "MUNICIPALITY",
+  "parentId": 4
+}
+
+### Create Location - LOCALITY (filho de Matosinhos) — id 5
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Leça da Palmeira",
+  "type": "LOCALITY",
+  "parentId": 5
+}
+
+### Create Location (Missing Token) (Should return 401 Unauthorized)
+POST http://localhost:8080/locations
+Content-Type: application/json
+
+{
+  "name": "Portugal",
+  "type": "COUNTRY"
+}
+
+### Create Location - tipo inválido (deve dar 400)
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Portugal",
+  "type": "CONTINENT"
+}
+
+### Create Location - nome em branco (deve dar 400)
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "   ",
+  "type": "COUNTRY"
+}
+
+### Create Location - parentId inexistente (deve dar 404)
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Norte",
+  "type": "REGION",
+  "parentId": 999
+}
+
+### Create Location - hierarquia inválida (deve dar 422)
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Espanha",
+  "type": "COUNTRY",
+  "parentId": 1
+}
+
+### Create Location - nome duplicado no mesmo pai (deve dar 409)
+POST http://localhost:8080/locations
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "name": "Norte",
+  "type": "REGION",
+  "parentId": 1
+}
+
+### Get Location por id
+GET http://localhost:8080/locations/1
+
+### Get Location - id inexistente (deve dar 404)
+GET http://localhost:8080/locations/999
+
+### Get Children of Location
+GET http://localhost:8080/locations/1/children
+
+### Get Hierarchy Path
+GET http://localhost:8080/locations/2/path

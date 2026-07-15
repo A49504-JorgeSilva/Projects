@@ -1,0 +1,195 @@
+
+#Jorge's token
+@myToken = 0a530593-4ad4-4eb1-b356-4e0d21ff9da0
+#Przemek's token
+#@myToken = 51d4cd97-d511-4236-8c71-2c77b9b81267
+
+#Miguel's token
+#@myToken = 435c858c-3cc3-4558-9624-eada46b1ea20
+
+### Create Booking (Success)
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "2026-06-03",
+  "endDate": "2026-06-10"
+}
+
+### Create Booking (Success)
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "2026-06-11",
+  "endDate": "2026-06-13"
+}
+
+### Create Booking 3
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-01", "endDate": "2026-07-03" }
+
+### Create Booking 4
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-04", "endDate": "2026-07-06" }
+
+### Create Booking 5
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-07", "endDate": "2026-07-09" }
+
+### Create Booking 6
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-10", "endDate": "2026-07-12" }
+
+### Create Booking 7
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-13", "endDate": "2026-07-15" }
+
+### Create Booking 8
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-16", "endDate": "2026-07-18" }
+
+### Create Booking 9
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-19", "endDate": "2026-07-21" }
+
+### Create Booking 10
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-22", "endDate": "2026-07-24" }
+
+### Create Booking 11
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-25", "endDate": "2026-07-27" }
+
+### Create Booking 12
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-07-28", "endDate": "2026-07-30" }
+
+### Create Booking 13
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{ "hid": 1, "startDate": "2026-08-01", "endDate": "2026-08-03" }
+
+### Create Booking (Missing Token) (Should return 401 Unauthorized)
+POST http://localhost:8080/bookings
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "2026-06-15",
+  "endDate": "2026-06-20"
+}
+
+### Create Booking (Overlapping Date) (Should return 409 Conflict)
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "2026-06-05",
+  "endDate": "2026-06-12"
+}
+
+### Create Booking (Invalid Dates) (Start after End) (Should return 400 Bad Request)
+POST http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+Content-Type: application/json
+
+{
+  "hid": 1,
+  "startDate": "2026-07-20",
+  "endDate": "2026-07-10"
+}
+
+
+
+### Get Booking by ID
+GET http://localhost:8080/bookings/1
+Authorization: Bearer {{myToken}}
+
+### Get Booking by ID (Missing Token) (Should return 401 Unauthorized)
+GET http://localhost:8080/bookings/1
+
+### Get Booking (Non-existent ID) (Should return 404 Not Found)
+GET http://localhost:8080/bookings/999
+Authorization: Bearer {{myToken}}
+
+### Get Booking (Invalid ID format) (Should return 400 Bad Request)
+GET http://localhost:8080/bookings/abc
+Authorization: Bearer {{myToken}}
+
+### List Bookings by hid
+GET http://localhost:8080/bookings?hid=1
+Authorization: Bearer {{myToken}}
+
+### List Bookings by hid (Missing Token) (Should return 401 Unauthorized)
+GET http://localhost:8080/bookings?hid=1
+
+### List Bookings by hid with Date Filters and Pagination
+GET http://localhost:8080/bookings?hid=1&startDate=2026-05-01&endDate=2026-07-01&skip=0&limit=5
+Authorization: Bearer {{myToken}}
+
+### List Bookings (Missing mandatory hid) (Should return 400 Bad Request)
+GET http://localhost:8080/bookings
+Authorization: Bearer {{myToken}}
+
+### Get Available Houses (Success)
+GET http://localhost:8080/bookings/available?startDate=2026-06-01&endDate=2026-06-10&skip=0&limit=10
+
+### Get Available Houses (Missing Mandatory Dates) (Should return 400 Bad Request)
+GET http://localhost:8080/bookings/available?startDate=2026-06-01
+
+### Get Available Houses (Invalid Date Format) (Should return 400 Bad Request)
+GET http://localhost:8080/bookings/available?startDate=not-a-date&endDate=2026-06-15
+
+### Get Available Houses (Start after End) (Should return 400 Bad Request)
+GET http://localhost:8080/bookings/available?startDate=2026-06-20&endDate=2026-06-10
+
+### Get Available Days in Month (Success)
+GET http://localhost:8080/houses/1/availability?month=2026-06
+
+### Get Available Days in Month (Missing month) (Should return 400 Bad Request)
+GET http://localhost:8080/houses/1/availability
+
+### Get Available Days in Month (Invalid month format) (Should return 400 Bad Request)
+GET http://localhost:8080/houses/1/availability?month=06-2026
+
+### Get Available Days in Month (Invalid house id) (Should return 400 Bad Request)
+GET http://localhost:8080/houses/abc/availability?month=2026-06

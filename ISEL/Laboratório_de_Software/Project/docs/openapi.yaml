@@ -1,0 +1,791 @@
+openapi: 3.1.0
+info:
+  title: Houses API
+  version: 1.0.0
+  description: API for managing house rentals, locations, users, and bookings.
+
+servers:
+  - url: http://localhost:8080
+    description: Local Development Server
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: UUID
+
+  schemas:
+
+    # --- Bookings ---
+
+    CreateBookingRequest:
+      type: object
+      required:
+        - hid
+        - startDate
+        - endDate
+      properties:
+        hid:
+          type: integer
+          description: ID of the house to book
+          example: 1
+        startDate:
+          type: string
+          format: date
+          example: "2026-04-10"
+        endDate:
+          type: string
+          format: date
+          example: "2026-04-15"
+
+    CreateBookingResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the newly created booking
+          example: 42
+
+    BookingResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 42
+        startDate:
+          type: string
+          format: date
+          example: "2026-04-10"
+        endDate:
+          type: string
+          format: date
+          example: "2026-04-15"
+        userId:
+          type: integer
+          example: 5
+        houseId:
+          type: integer
+          example: 1
+
+    UpdateBookingRequest:
+      type: object
+      required:
+        - startDate
+        - endDate
+      properties:
+        startDate:
+          type: string
+          format: date
+          example: "2026-05-01"
+        endDate:
+          type: string
+          format: date
+          example: "2026-05-10"
+
+    AvailableDaysResponse:
+      type: object
+      properties:
+        availableDays:
+          type: array
+          items:
+            type: string
+            format: date
+          example: [ "2026-06-01", "2026-06-02", "2026-06-15" ]
+
+    # --- Houses ---
+
+    CreateHouseRequest:
+      type: object
+      required:
+        - title
+        - locationId
+        - areaSqMt
+        - pricePerNight
+        - description
+      properties:
+        title:
+          type: string
+          example: "Cosy Lisbon Apartment"
+        locationId:
+          type: integer
+          description: ID of the location where the house is situated
+          example: 3
+        areaSqMt:
+          type: number
+          format: double
+          description: Area of the house in square metres
+          example: 85.5
+        pricePerNight:
+          type: number
+          format: double
+          example: 120.0
+        description:
+          type: string
+          example: "A lovely apartment in the heart of Lisbon."
+
+    CreateHouseResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the newly created house
+          example: 7
+
+    HouseResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 7
+        title:
+          type: string
+          example: "Cosy Lisbon Apartment"
+        locationId:
+          type: integer
+          example: 3
+        areaSqMt:
+          type: number
+          format: double
+          example: 85.5
+        pricePerNight:
+          type: number
+          format: double
+          example: 120.0
+        description:
+          type: string
+          example: "A lovely apartment in the heart of Lisbon."
+        ownerId:
+          type: integer
+          description: ID of the user who owns the house
+          example: 1
+
+    HousesResponse:
+      type: object
+      properties:
+        houses:
+          type: array
+          items:
+            $ref: '#/components/schemas/HouseResponse'
+
+    # --- Users ---
+
+    CreateUserRequest:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+          example: "Joao Silva"
+        email:
+          type: string
+          format: email
+          example: "joao.silva@example.com"
+
+    CreateUserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the newly created user
+          example: 1
+        token:
+          type: string
+          format: uuid
+          description: Bearer token to authenticate future requests
+          example: "550e8400-e29b-41d4-a716-446655440000"
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Joao Silva"
+        email:
+          type: string
+          format: email
+          example: "joao.silva@example.com"
+
+    # --- Locations ---
+
+    CreateLocationRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          example: "Lisboa"
+        type:
+          type: string
+          enum: [COUNTRY, REGION, CITY, MUNICIPALITY, LOCALITY]
+          example: "CITY"
+        parentId:
+          type: integer
+          description: ID of the parent location. Required for all types except COUNTRY.
+          example: 2
+
+    CreateLocationResponse:
+      type: object
+      properties:
+        locationId:
+          type: integer
+          description: ID of the newly created location
+          example: 5
+
+    LocationResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 5
+        name:
+          type: string
+          example: "Lisboa"
+        type:
+          type: string
+          enum: [COUNTRY, REGION, CITY, MUNICIPALITY, LOCALITY]
+          example: "CITY"
+        parentId:
+          type: integer
+          example: 2
+
+paths:
+
+  # --- Bookings ---
+
+  /bookings:
+    post:
+      summary: Create a new booking
+      tags:
+        - Bookings
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookingRequest'
+      responses:
+        '201':
+          description: Booking successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBookingResponse'
+        '400':
+          description: Bad request (invalid dates or malformed JSON body)
+        '401':
+          description: Unauthorized (missing or invalid Bearer token)
+        '409':
+          description: Conflict (house is already booked for the selected dates)
+
+    get:
+      summary: List bookings for a specific house
+      tags:
+        - Bookings
+      parameters:
+        - name: hid
+          in: query
+          required: true
+          description: ID of the house
+          schema:
+            type: integer
+        - name: startDate
+          in: query
+          required: false
+          description: Filter bookings whose start date is on or after this date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: false
+          description: Filter bookings whose end date is on or before this date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: skip
+          in: query
+          required: false
+          description: Number of records to skip for pagination
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: A list of bookings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookingResponse'
+        '400':
+          description: Bad request (missing or invalid query parameters)
+
+  /bookings/{id}:
+    get:
+      summary: Get a specific booking by ID
+      tags:
+        - Bookings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the booking
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Booking details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingResponse'
+        '400':
+          description: Bad request (invalid ID format)
+        '404':
+          description: Not found (booking does not exist)
+
+    put:
+      summary: Update a booking's dates
+      tags:
+        - Bookings
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the booking to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBookingRequest'
+      responses:
+        '200':
+          description: Booking successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingResponse'
+        '400':
+          description: Bad request (invalid dates, format, or dates in the past)
+        '401':
+          description: Unauthorized (missing or invalid Bearer token)
+        '404':
+          description: Not found (booking does not exist)
+        '409':
+          description: Conflict (new dates overlap with an existing booking)
+
+    delete:
+      summary: Delete a booking
+      tags:
+        - Bookings
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the booking to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Booking successfully deleted
+        '400':
+          description: Bad request (invalid ID format)
+        '401':
+          description: Unauthorized (missing or invalid Bearer token)
+        '404':
+          description: Not found (booking does not exist)
+
+  /bookings/available:
+    get:
+      summary: List houses available for a given period
+      description: Returns all houses that are not booked during the specified date range.
+      tags:
+        - Bookings
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          description: Start date of the period (inclusive, YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+            example: "2026-05-01"
+        - name: endDate
+          in: query
+          required: true
+          description: End date of the period (inclusive, YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+            example: "2026-05-07"
+        - name: skip
+          in: query
+          required: false
+          description: Number of records to skip for pagination
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: List of available houses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HousesResponse'
+        '400':
+          description: Bad request (invalid or missing date parameters, or startDate after endDate)
+        '404':
+          description: Not found (no houses exist, but it's still 200 with empty list)
+
+
+  # --- Houses ---
+
+  /houses:
+    post:
+      summary: Create a new house
+      tags:
+        - Houses
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateHouseRequest'
+      responses:
+        '201':
+          description: House successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateHouseResponse'
+        '400':
+          description: Bad request (missing or invalid fields)
+        '401':
+          description: Unauthorized (missing or invalid Bearer token)
+
+    get:
+      summary: List all houses
+      tags:
+        - Houses
+      parameters:
+        - name: skip
+          in: query
+          required: false
+          description: Number of records to skip for pagination
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: A list of houses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HousesResponse'
+        '400':
+          description: Bad request (invalid pagination parameters)
+
+  /houses/{id}:
+    get:
+      summary: Get a specific house by ID
+      tags:
+        - Houses
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the house
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: House details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HouseResponse'
+        '400':
+          description: Bad request (invalid ID format)
+        '404':
+          description: Not found (house does not exist)
+
+  /houses/{id}/availability:
+    get:
+      summary: List available days to book a house in a specific month
+      tags:
+        - Bookings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the house
+          schema:
+            type: integer
+        - name: month
+          in: query
+          required: true
+          description: Month to check availability (YYYY-MM)
+          schema:
+            type: string
+            example: "2026-06"
+      responses:
+        '200':
+          description: List of available dates in the requested month
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableDaysResponse'
+        '400':
+          description: Bad request (invalid house id, missing or invalid month format)
+
+  # --- Users ---
+
+  /users:
+    post:
+      summary: Create a new user
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserResponse'
+        '400':
+          description: Bad request (blank name/email or invalid email format)
+        '409':
+          description: Conflict (email is already in use)
+
+  /users/{id}:
+    get:
+      summary: Get a specific user by ID
+      tags:
+        - Users
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Bad request (invalid ID format)
+        '401':
+          description: Unauthorized (missing or invalid Bearer token)
+        '404':
+          description: Not found (user does not exist)
+
+  /users/{id}/bookings:
+    get:
+      summary: List all bookings made by a specific user
+      tags:
+        - Users
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+        - name: skip
+          in: query
+          required: false
+          description: Number of records to skip for pagination
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: A list of the user's bookings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookingResponse'
+        '400':
+          description: Bad request (invalid ID format or pagination parameters)
+        '401':
+          description: Unauthorized (missing or invalid Bearer token)
+        '404':
+          description: Not found (user does not exist)
+
+  # --- Locations ---
+
+  /locations:
+    post:
+      summary: Create a new location
+      description: >
+        Creates a location in the hierarchy COUNTRY > REGION > CITY > MUNICIPALITY > LOCALITY.
+        Only a COUNTRY can be created without a parentId.
+        All other types must reference a parent of a strictly higher type.
+      tags:
+        - Locations
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLocationRequest'
+      responses:
+        '201':
+          description: Location successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLocationResponse'
+        '400':
+          description: Bad request (blank name, invalid type, or COUNTRY created with a parent)
+        '401':
+          description: Unauthorized (missing or invalid Bearer token)
+        '404':
+          description: Not found (parent location does not exist)
+        '409':
+          description: Conflict (a location with the same name already exists under the same parent)
+        '422':
+          description: Unprocessable entity (invalid hierarchy, e.g. CITY as parent of COUNTRY)
+
+  /locations/{id}:
+    get:
+      summary: Get a specific location by ID
+      tags:
+        - Locations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the location
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Location details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationResponse'
+        '400':
+          description: Bad request (invalid ID format)
+        '404':
+          description: Not found (location does not exist)
+
+  /locations/{id}/children:
+    get:
+      summary: Get all direct children of a location
+      tags:
+        - Locations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the parent location
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of child locations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LocationResponse'
+        '400':
+          description: Bad request (invalid ID format)
+        '404':
+          description: Not found (parent location does not exist)
+
+  /locations/{id}/path:
+    get:
+      summary: Get the full hierarchy path from root to a location
+      description: Returns the ordered list of locations from the top-level COUNTRY down to the requested location.
+      tags:
+        - Locations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the location
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ordered hierarchy path (root first)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LocationResponse'
+        '400':
+          description: Bad request (invalid ID format)
+        '404':
+          description: Not found (location does not exist)

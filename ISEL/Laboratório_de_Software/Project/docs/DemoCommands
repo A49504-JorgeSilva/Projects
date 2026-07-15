@@ -1,0 +1,13 @@
+# 1. Clonar o repositório
+git clone https://github.com/isel-leic-ls/2526-2-LEIC43D-G04.git demo-folder
+cd demo-folder
+
+# 2. Checkout da tag
+git checkout 0.2.2
+
+# 3 & 4. Clean e build (duas vezes conforme pedido)
+gradlew clean build
+gradlew clean build
+
+# 5. Lançar o servidor (garante que o PostgreSQL está a correr primeiro)
+gradlew run
