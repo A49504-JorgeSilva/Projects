@@ -1,3 +1,29 @@
+# CITES — Sistema de Partilha de Trotinetes Elétricas
+
+Projeto da disciplina de Sistemas de Informação: gestão de uma rede de partilha de trotinetes elétricas ("scooter sharing"), com estações, docas, cartões de cliente e viagens.
+
+## Modelo de domínio
+
+- `Client` — cliente registado, com cartão(ões) associado(s).
+- `TypeOfCard` — tarifário (residente/turista), com nº de dias e preço.
+- `Card` — crédito monetário de um cliente associado a um tipo de cartão.
+- `Station` / `Dock` — localização geográfica e vagas de estacionamento (livre/ocupada), cada uma com a sua trotinete.
+- `ScooterModel` / `Scooter` — modelo (peso, velocidade máxima, bateria) e unidade concreta.
+- `Travel` — viagem de um cliente entre estações, com avaliação.
+- `ServiceCost` — custo de desbloqueio + custo por minuto de uso.
+
+## Casos de uso implementados
+
+App de consola (`isel.sisinf.ui`) com menu numerado: registar cliente com cartão e crédito inicial, listar clientes e docas/estações, iniciar viagem (verifica crédito, procura trotinete disponível na estação, debita custo de desbloqueio) e terminar viagem (calcula duração, debita custo proporcional ao tempo, liberta a doca).
+
+## Stack
+
+Java + Maven multi-módulo, **JPA/Jakarta Persistence** (provider EclipseLink) sobre **PostgreSQL**. Esquema SQL em [`cites-SQL`](../cites-SQL) (`create-model.sql`, `insert-data.sql`).
+
+> Nota de arquitetura: apesar da separação em 3 módulos Maven, os módulos `model` e `dal` são o esqueleto fornecido pelo enunciado (stubs "for demonstration purpose only"); toda a lógica de negócio, as entidades JPA e a gestão de transações estão implementadas no módulo `app` (pacote `isel.sisinf.ui`).
+
+---
+
 # Multi-Module Project with Maven
 
 This directory contains a multi-module project managed by [Apache Maven](https://maven.apache.org). It consists of three modules: `dal`, `model`, and `app`.
